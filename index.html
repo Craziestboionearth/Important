@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Für Romana</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500&family=DM+Sans:wght@400;500&family=Fraunces:opsz,wght@9..144,400;9..144,600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#101015;--card:#18181f;--ink:#ece7de;--dim:#8f8c98;--thread:#dba9a1;--line:#2b2b36}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg) repeating-linear-gradient(0deg,rgba(255,255,255,.014) 0 2px,transparent 2px 4px),repeating-linear-gradient(90deg,rgba(255,255,255,.014) 0 2px,transparent 2px 4px);
+ color:var(--ink);font:17px/1.6 "DM Sans",system-ui,sans-serif;min-height:100vh}
+main{max-width:640px;margin:0 auto;padding:calc(36px + env(safe-area-inset-top,0px)) 20px calc(80px + env(safe-area-inset-bottom,0px))}
+h1,h2{font-family:Fraunces,Georgia,serif;font-weight:600;line-height:1.1;margin:0 0 .35em}
+h1{font-size:clamp(2.6rem,11vw,4rem)}h2{font-size:1.8rem}
+p{margin:.6em 0}.dim{color:var(--dim)}
+.bar{display:flex;gap:8px;margin:0 0 34px}
+.bar i{flex:1;height:0;border-top:2px dashed var(--line)}
+.bar i.on{border-color:var(--thread)}
+.patch{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:26px 22px;margin:20px 0;outline:1.5px dashed rgba(219,169,161,.3);outline-offset:-9px}
+.thread{width:100%;max-width:300px;height:14px;margin:4px 0 22px}
+.thread path{fill:none;stroke:var(--thread);stroke-width:2.5;stroke-linecap:round;stroke-dasharray:7 8;stroke-dashoffset:320;animation:draw 2.2s ease-out forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.doc{font-family:Fraunces,Georgia,serif;line-height:1.9}
+.red{background:#000;color:#000;padding:0 .25em;border-radius:3px}
+.red::selection{background:var(--thread);color:#111}
+.stamp{display:inline-block;border:2px solid #c2574d;color:#c2574d;padding:2px 10px;transform:rotate(-4deg);font:600 .9rem "DM Sans";letter-spacing:.1em;margin:0 0 8px}
+.mix{display:flex;gap:10px;margin:14px 0}.mix div{flex:1;height:76px;border-radius:12px;border:1px solid var(--line)}
+.mix span{display:block;font-size:.8rem;color:var(--dim);margin-top:4px;text-align:center}
+.sl{display:grid;grid-template-columns:22px 1fr;gap:6px;align-items:center;margin:6px 0}
+input[type=range]{width:100%;accent-color:var(--thread)}
+.grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin:14px 0}
+.cell{background:#12141a;border:1px solid var(--line);border-radius:10px;aspect-ratio:1;font-size:1.3rem;padding:0;color:var(--ink);cursor:pointer}
+.cell.no{opacity:.25}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0;min-height:46px}
+.chip{background:none;color:var(--ink);border:1px solid var(--line);border-radius:999px;padding:6px 14px;font:500 1.35rem Caveat,cursive;cursor:pointer}
+.slot{border-bottom:1px dashed var(--thread);padding-bottom:10px}
+.hand{font-family:Caveat,cursive;font-size:1.35rem;line-height:1.35}
+.tabs{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap}
+.tab{background:none;color:var(--dim);border:1px solid var(--line);padding:7px 14px;font-size:.92rem}
+.tab.on{color:#1a1114;background:var(--thread);border-color:var(--thread)}
+.src{display:none}.src.on{display:block}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-top:16px}
+.pc{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px;text-align:left;color:var(--ink);font:400 .88rem/1.5 "DM Sans",sans-serif;cursor:pointer}
+.pc b{display:block;font:600 1.1rem Fraunces,serif;margin-bottom:4px;color:var(--thread)}
+.pc:hover{border-color:var(--thread)}
+form{display:flex;gap:10px;margin-top:16px}
+input[type=text]{flex:1;min-width:0;background:var(--bg);border:1px solid var(--line);color:var(--ink);border-radius:10px;padding:12px 14px;font:inherit}
+button{background:var(--thread);color:#1a1114;border:0;border-radius:10px;padding:12px 18px;font:500 1rem "DM Sans",sans-serif;cursor:pointer}
+button.ghost{background:none;color:var(--dim);border:1px solid var(--line);margin-top:14px;padding:8px 14px;font-size:.9rem}
+:is(input,button):focus-visible{outline:2px solid var(--thread);outline-offset:2px}
+.hint{color:var(--thread);font-size:.95rem;border-left:2px solid var(--thread);padding-left:12px;margin:10px 0}
+.msg{min-height:1.5em;font-size:.95rem;color:var(--dim);margin-top:8px}
+.shake{animation:sh .35s}@keyframes sh{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.notes{margin-top:46px;padding-top:22px;border-top:1px dashed var(--line)}
+.notes ul{padding-left:18px;margin:0;list-style:"✂  "}.notes li{margin:.55em 0}
+.fabric{width:100%;border-radius:12px;display:block;margin:12px 0;border:1px solid var(--line)}
+.final{font-family:Fraunces,Georgia,serif;font-size:1.3rem;white-space:pre-line}
+.fade{animation:fi .5s}@keyframes fi{from{opacity:0}}
+@media (prefers-reduced-motion:reduce){.shake,.fade{animation:none}.thread path{animation:none;stroke-dashoffset:0}}
+</style>
+</head>
+<body>
+<main>
+  <div class="bar" id="bar"></div>
+  <div id="view"></div>
+  <div class="notes" id="notes" hidden><p class="dim">Dein Notizbuch</p><ul id="clueList"></ul></div>
+</main>
+<script>
+/* ============ DEINE EINSTELLUNGEN ============ */
+const FINAL_NAMES = ["Jane","Jane Westermann","Westermann","Jane Drehmann-Westermann"];
+const FINAL_MESSAGE = "Ja. Genau sie.\n\nDas hier war meine Art, dir das zu sagen.\n\n– Lenny";
+/* ============================================= */
+
+const $ = id => document.getElementById(id);
+const norm = s => s.toLowerCase().trim().replace(/ä/g,'ae').replace(/ö/g,'oe').replace(/ü/g,'ue').replace(/ß/g,'ss').replace(/[^a-z0-9]/g,'');
+
+// Hilfsfunktion: Frage mit Textfeld
+const ask = (html, answers, wrongMsg) => (box, ok, bad) => {
+  box.innerHTML = html + `<form><input type="text" aria-label="Antwort" placeholder="Deine Antwort" autocomplete="off" autocapitalize="off"><button>Prüfen</button></form>`;
+  const f = box.querySelector("form"), i = box.querySelector("input");
+  f.onsubmit = e => { e.preventDefault(); const v = norm(i.value);
+    v && answers.some(a => norm(a) === v) ? ok() : bad(wrongMsg || "Noch nicht ganz."); };
+};
+
+/* ---------- Rätsel: Akte mit Schwärzungen ---------- */
+const akte = ask(`<span class="stamp">VERTRAULICH</span>
+<div class="doc"><p>Akte Nr. 17 &middot; Gesuchte Person</p>
+<p>Körpergröße: <span class="red">klein</span>, aber nie zu übersehen.<br>
+Auffälligstes Kleidungsstück: <span class="red">Weste</span>.<br>
+Besondere Kennzeichen: bleibt im Gedächtnis.</p></div>
+<p class="dim">Jemand hat Teile der Akte geschwärzt. Was steht unter dem Balken bei „Kleidungsstück“?</p>`, ["weste","westen"]);
+
+/* ---------- Rätsel: Farblabor ---------- */
+const farbe = (box, ok) => {
+  const T = [92,60,42]; let done = false;
+  box.innerHTML = `<p>Mische die Farbe ihrer Augen. Links siehst du das Ziel.</p>
+  <div class="mix"><div style="background:rgb(${T})"></div><div id="mx"></div></div>
+  <div class="mix" style="margin:0"><span style="flex:1">Ziel</span><span style="flex:1">Deine Mischung</span></div>
+  ${["R","G","B"].map((c,n)=>`<label class="sl"><span>${c}</span><input type="range" min="0" max="255" value="128" data-n="${n}"></label>`).join("")}
+  <div class="msg" id="fm">Schieb die Regler.</div>`;
+  const v = [128,128,128], rs = box.querySelectorAll("input");
+  const upd = () => { $("mx").style.background = `rgb(${v})`;
+    const d = Math.max(...v.map((x,i)=>Math.abs(x-T[i])));
+    $("fm").textContent = d>80?"Noch weit weg.":d>40?"Wärmer.":d>16?"Fast da.":"Das ist sie.";
+    if (d<=16 && !done){ done = true; setTimeout(ok,700); } };
+  rs.forEach(r => r.oninput = () => { v[r.dataset.n] = +r.value; upd(); }); upd();
+};
+
+/* ---------- Rätsel: Katze im Blätterwald ---------- */
+const katze = (box, ok) => {
+  const W = 7, CAT = 22; let done = false;
+  box.innerHTML = `<p>Irgendwo in diesem Blätterhaufen versteckt sich ihr Lieblingstier. Tipp auf die Blätter, ich sage dir, wie nah du bist.</p>
+  <div class="grid">${Array.from({length:35},(_,i)=>`<button type="button" class="cell" data-i="${i}" aria-label="Blätter">🌿</button>`).join("")}</div>
+  <div class="msg" id="gm"></div>`;
+  box.querySelectorAll(".cell").forEach(b => b.onclick = () => {
+    if (done) return; const i = +b.dataset.i;
+    if (i === CAT){ done = true; b.textContent = "🐈"; $("gm").textContent = "Gefunden."; setTimeout(ok,900); return; }
+    const d = Math.abs(i%W-CAT%W)+Math.abs(Math.floor(i/W)-Math.floor(CAT/W));
+    b.classList.add("no"); $("gm").textContent = d<=1?"Heiß. Es raschelt direkt nebenan.":d<=3?"Warm.":d<=5?"Lau.":"Kalt."; });
+};
+
+/* ---------- Rätsel: Satz aus Wörtern bauen ---------- */
+const satz = (box, ok, bad) => {
+  const target = "Aus einem leeren Blatt macht sie etwas, das man behalten will.";
+  let pool = ["das","Blatt","will.","sie","Aus","behalten","man","einem","etwas,","macht","leeren"], pick = [];
+  const draw = () => {
+    box.innerHTML = `<p>Das ist ein Zettel in ihrer Handschrift gewesen, bis jemand ihn zerschnitten hat. Setz den Satz wieder zusammen. Tipp die Wörter in der richtigen Reihenfolge an.</p>
+    <div class="chips slot" id="pk">${pick.map((w,i)=>`<button type="button" class="chip" data-p="${i}">${w}</button>`).join("")}</div>
+    <div class="chips" id="pl">${pool.map((w,i)=>`<button type="button" class="chip" data-l="${i}">${w}</button>`).join("")}</div>`;
+    box.querySelectorAll("[data-l]").forEach(b => b.onclick = () => { pick.push(pool.splice(+b.dataset.l,1)[0]);
+      if (!pool.length){ pick.join(" ")===target ? (draw(),ok()) : (bad("Das ergibt noch keinen Sinn. Versuch es noch mal."), pool=pick.sort(()=>Math.random()-.5), pick=[], draw()); } else draw(); });
+    box.querySelectorAll("[data-p]").forEach(b => b.onclick = () => { pool.push(pick.splice(+b.dataset.p,1)[0]); draw(); });
+  }; draw();
+};
+
+/* ---------- Rätsel: Profil-Abgleich mit drei Quellen ---------- */
+const profil = (box, ok, bad) => {
+  const F = ["Größe","Augen","Haare","Haustier","Lieblingsteil","Geschwister"];
+  const C = [["A","klein","braun","braun","Katzen","Weste","Bruder"],["B","klein","braun","blond","Katzen","Weste","Schwester"],
+    ["C","groß","braun","braun","Katzen","Weste","Schwester"],["D","klein","blau","braun","Katzen","Weste","Schwester"],
+    ["E","klein","braun","braun","Hunde","Weste","Schwester"],["F","klein","braun","braun","Katzen","Weste","Schwester"],
+    ["G","klein","braun","braun","Katzen","Hoodie","Schwester"]];
+  const OK = "F";
+  box.innerHTML = `<p>Drei Quellen, sieben Verdächtige. Nur eine Person passt zu allem, was du bisher weißt und was die Quellen sagen. Lies genau.</p>
+  <div class="tabs"><button type="button" class="tab on" data-s="0">Chatverlauf</button><button type="button" class="tab" data-s="1">Zettel</button><button type="button" class="tab" data-s="2">Schulhof</button></div>
+  <div class="src on"><p class="dim">Ausschnitt aus einem Gruppenchat:</p><p>– Wer war nochmal die mit den Katzenbildern?<br>– Die Kleine. Die mit der Weste.<br>– Ach die! Die hat doch jede Woche eine andere.</p></div>
+  <div class="src"><p class="hand">Augen: Kaffee. Haare: derselbe Ton.<br>Hat eine Schwester, und zwei Zuhause, zwischen denen sie pendelt.</p></div>
+  <div class="src"><p>„Die kennt echt jeden im Jahrgang, schon ewig. Macht in der Schule bei allem mit. Früher war sie mal richtig gläubig, heute nicht mehr. Und diese Nägel, wow. Ihre Haare findet sie schrecklich, als Einzige.“</p></div>
+  <div class="cards">${C.map(c=>`<button type="button" class="pc" data-c="${c[0]}"><b>Person ${c[0]}</b>${F.map((f,i)=>`${f}: ${c[i+1]}`).join("<br>")}</button>`).join("")}</div>`;
+  const tabs = box.querySelectorAll(".tab"), src = box.querySelectorAll(".src");
+  tabs.forEach((t,i) => t.onclick = () => { tabs.forEach((x,j)=>x.classList.toggle("on",i===j)); src.forEach((x,j)=>x.classList.toggle("on",i===j)); });
+  box.querySelectorAll(".pc").forEach(b => b.onclick = () => b.dataset.c===OK ? ok() : bad("Die passt nicht zu allen Quellen."));
+};
+
+const LEVELS = [
+ { title:"Die Akte", intro:"Es fängt mit einem Dokument an. Manches davon wurde geschwärzt, aber schwarz ist nicht immer leer.",
+   parts:[{ run:akte, hints:["Versuch, den schwarzen Balken zu markieren. Am Handy: lang drücken.","Markierter Text wird sichtbar, auch wenn er unter einem Balken steckt."] }],
+   clues:["Sie ist klein, aber man übersieht sie nie.","Westen. Sie hat vermutlich mehr davon als Socken."] },
+ { title:"Das Labor", intro:"Zwei Dinge, die man nur sieht, wenn man genau hinschaut.",
+   parts:[{ run:farbe, hints:["Braun ist meistens viel Rot, etwas weniger Grün und noch weniger Blau.","Rot um 90, Grün um 60, Blau um 40."] },
+          { run:katze, hints:["Fang in der Mitte an und arbeite dich von dort vor.","Sie versteckt sich eher links unten."] }],
+   clues:["Braune Augen. Die Haare haben denselben Ton.","Katzen. Sie würde sofort einen Zoo daraus machen."] },
+ { title:"Die Handschrift", intro:"Ihr Blatt hat jemand zerschnitten. Und danach ein Rätsel für Schlaue.",
+   parts:[{ run:satz, hints:["Der Satz beginnt mit „Aus“.","Es geht um ein Blatt Papier."] },
+          { run:ask(`<p>Zeit für einen Klassiker, den sie sofort lösen würde:</p><p class="doc" style="font-size:1.25rem">Je mehr ich trockne, desto nasser werde ich.</p><p class="dim">Was bin ich?</p>`, ["handtuch","ein handtuch","das handtuch","tuch"]),
+            hints:["Man hat es nach dem Duschen in der Hand.","Es hängt im Bad."] }],
+   clues:["Unfassbar kreativ und künstlerisch begabt. Aus fast allem macht sie etwas.","Super schlau. Sie merkt sofort, wenn etwas nicht stimmt.","Eine Handschrift, die man am liebsten einrahmen würde."] },
+ { title:"Die Quellen", intro:"Jetzt musst du schnüffeln. Lies, vergleiche, schließe aus.",
+   parts:[{ run:profil, hints:["Streich zuerst alle, die bei Größe oder Lieblingsteil nicht passen.","Beim Zettel steht, wie viele Geschwister und welches Geschlecht gemeint ist.","Es bleiben zwei übrig. Schau noch mal auf Haustier und Haare."] }],
+   clues:["Sie hat eine Schwester und zwei Zuhause, zwischen denen sie pendelt.","Sie kennt viele aus dem Jahrgang schon ewig und engagiert sich in der Schule.","Früher hat sie geglaubt, heute nicht mehr.","Lange Nägel. Ihre Haare findet sie schrecklich, als Einzige."] },
+ { title:"Das Bild", intro:"Alles, was du gesammelt hast, führt zu einer Person. Dieses Detail stammt aus einem ihrer Posts.",
+   parts:[{ run:ask(`<img class="fabric" src="Images/Stoff.png" alt="Bildausschnitt"><p>Wer ist die Person, die alle deine Hinweise vereint?</p>`, FINAL_NAMES, "Das ist nicht der Name. Schau noch mal in dein Notizbuch."),
+            hints:["Geh dein Notizbuch Zeile für Zeile durch.","Sie ist in Lennys Jahrgang. Wer aus dem Jahrgang trägt dauernd Westen?"] }],
+   clues:[] }
+];
+
+/* ---------- Zustand ---------- */
+let S = {started:false, lvl:0, part:0, done:false, clear:false};
+try { const x = JSON.parse(localStorage.getItem("romana2")); if (x) S = x; } catch(e){}
+const save = () => { try { localStorage.setItem("romana2", JSON.stringify(S)); } catch(e){} };
+let hintsShown = 0;
+
+function frame(){
+  $("bar").innerHTML = LEVELS.map((_,i)=>`<i class="${S.done||i<=S.lvl&&S.started?"on":""}"></i>`).join("");
+  const n = S.done ? LEVELS.length : S.lvl + (S.clear ? 1 : 0);
+  const list = LEVELS.slice(0,n).flatMap(l=>l.clues);
+  $("notes").hidden = !list.length;
+  $("clueList").innerHTML = list.map(c=>`<li>${c}</li>`).join("");
+}
+const thread = `<svg class="thread" viewBox="0 0 300 14" aria-hidden="true"><path d="M3 8 C60 0,100 14,150 7 S250 2,297 8"/></svg>`;
+
+function render(){
+  frame(); const v = $("view");
+  if (!S.started){
+    v.innerHTML = `<div class="fade"><h1>Für Romana.</h1>${thread}<p>Ich will dir etwas sagen. Aber du musst es dir erarbeiten.</p><p class="dim">Du weißt ja schon, dass es jemand aus meinem Jahrgang ist. Den Rest findest du in fünf Etappen heraus. Nimm dir Zeit, lies genau, und wenn du nicht weiterkommst, hilft ein Tipp.</p><button id="go" style="margin-top:14px">Los geht’s</button></div>`;
+    $("go").onclick = () => { S.started = true; save(); render(); }; return;
+  }
+  if (S.done){
+    v.innerHTML = `<div class="fade"><h2>Aufgelöst</h2><div class="patch"><p class="final">${FINAL_MESSAGE}</p></div></div>`; return;
+  }
+  if (S.clear){
+    const L = LEVELS[S.lvl];
+    v.innerHTML = `<div class="fade"><h2>${L.title}: geschafft</h2><div class="patch">${L.clues.map(c=>`<p>${c}</p>`).join("")}<button id="nx" style="margin-top:12px">Weiter</button></div></div>`;
+    $("nx").onclick = () => { S.clear = false; S.lvl++; S.part = 0; save(); render(); window.scrollTo(0,0); }; return;
+  }
+  const L = LEVELS[S.lvl], P = L.parts[S.part];
+  const hints = P.hints.slice(0,hintsShown).map(h=>`<div class="hint">${h}</div>`).join("");
+  v.innerHTML = `<div class="fade"><h2>${L.title}</h2>${S.part===0?`<p class="dim">${L.intro}</p>`:""}
+    <div class="patch" id="card"><div id="box"></div><div class="msg" id="msg" role="status"></div>${hints}
+    ${hintsShown<P.hints.length?`<button type="button" class="ghost" id="hb">Tipp anzeigen</button>`:""}</div></div>`;
+  const hb = $("hb"); if (hb) hb.onclick = () => { hintsShown++; render(); };
+  P.run($("box"), next, bad);
+}
+function bad(m){ $("msg").textContent = m; const c = $("card"); c.classList.remove("shake"); void c.offsetWidth; c.classList.add("shake"); }
+function next(){
+  hintsShown = 0; const L = LEVELS[S.lvl];
+  if (S.part < L.parts.length-1) S.part++;
+  else if (S.lvl < LEVELS.length-1) S.clear = true;
+  else S.done = true;
+  save(); render(); window.scrollTo(0,0);
+}
+render();
+</script>
+</body>
+</html>
