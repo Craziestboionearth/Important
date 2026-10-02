@@ -148,7 +148,7 @@ const profil = (box, ok, bad) => {
   <div class="tabs"><button type="button" class="tab on" data-s="0">Chatverlauf</button><button type="button" class="tab" data-s="1">Zettel</button><button type="button" class="tab" data-s="2">Schulhof</button></div>
   <div class="src on"><p class="dim">Ausschnitt aus einem Gruppenchat:</p><p>– Wer war nochmal die mit den Katzenbildern?<br>– Die Kleine. Die mit der Weste.<br>– Ach die! Die hat doch jede Woche eine andere.</p></div>
   <div class="src"><p class="hand">Augen: Kaffee. Haare: derselbe Ton.<br>Hat eine Schwester, und zwei Zuhause, zwischen denen sie pendelt.</p></div>
-  <div class="src"><p>„Die kennt echt jeden im Jahrgang, schon ewig. Macht in der Schule bei allem mit. Früher war sie mal richtig gläubig, heute nicht mehr. Und diese Nägel, wow. Ihre Haare findet sie schrecklich, als Einzige.“</p></div>
+  <div class="src"><p>„Ein paar Leute kennt sie schon ewig. Macht alles für die Schule. Früher war sie mal richtig gläubig, heute nicht mehr. Und diese Nägel, wow. Ihre Haare findet sie schrecklich, als Einzige.“</p></div>
   <div class="cards">${C.map(c=>`<button type="button" class="pc" data-c="${c[0]}"><b>Person ${c[0]}</b>${F.map((f,i)=>`${f}: ${c[i+1]}`).join("<br>")}</button>`).join("")}</div>`;
   const tabs = box.querySelectorAll(".tab"), src = box.querySelectorAll(".src");
   tabs.forEach((t,i) => t.onclick = () => { tabs.forEach((x,j)=>x.classList.toggle("on",i===j)); src.forEach((x,j)=>x.classList.toggle("on",i===j)); });
